@@ -47,9 +47,9 @@ public class DataBase implements DbActions<Good> {
     }
 
     public void displayInfo() {
-       for (Good good: getData()) {
-           System.out.println(good);
-       }
+        for (Good good: getData()) {
+            System.out.println(good);
+        }
     }
 
     @Override
