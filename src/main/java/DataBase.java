@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DataBase implements DBActions<Good> {
+public class DataBase implements DbActions<Good> {
     private Path path;
 
     public DataBase(Path path) {
@@ -20,7 +20,7 @@ public class DataBase implements DBActions<Good> {
 
         if (Files.exists(path)) {
             try {
-                 data = prepareData(Files.lines(path).collect(Collectors.toList()));
+                data = prepareData(Files.lines(path).collect(Collectors.toList()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -48,8 +48,8 @@ public class DataBase implements DBActions<Good> {
 
     public void displayInfo() {
        for (Good good: getData()) {
-            System.out.println(good);
-        }
+           System.out.println(good);
+       }
     }
 
     @Override

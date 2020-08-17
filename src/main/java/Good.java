@@ -31,11 +31,11 @@ public class Good {
 
     @Override
     public String toString() {
-        return "Good{" +
-                "type=" + type +
-                ", fruit='" + fruit + '\'' +
-                ", quantity=" + quantity +
-                ", date=" + date +
-                '}';
+        return "Good{"
+                + "type=" + type
+                + ", fruit='" + fruit + '\''
+                + ", quantity=" + quantity
+                + ", date=" + date
+                + '}';
     }
 }

@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface DBActions<T> {
+public interface DbActions<T> {
     public List getData();
 
     public void saveData(List<T> data);

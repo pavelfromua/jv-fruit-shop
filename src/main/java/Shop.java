@@ -2,10 +2,9 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class Shop {
-    final public static Path path = Path.of("C:\\Projects\\JavaStudy\\jv-fruit-shop\\DB.csv");
+    public static final Path path = Path.of("C:\\Projects\\JavaStudy\\jv-fruit-shop\\DB.csv");
 
     public static void displayActualData(List<Good> inputData) {
         Map<String, Integer> data = getActualData(inputData);
