@@ -9,10 +9,12 @@ public class Shop {
     public Shop(Path path) {
         if (!setDbConnection(path)) {
             System.out.println("The connection with database isn't set");
-        };
+        }
     }
 
-    public Shop() {}
+    public Shop() {
+
+    }
 
     public boolean displayActualData() {
         Map<String, Integer> data = getActualData();
