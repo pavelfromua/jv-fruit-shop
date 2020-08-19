@@ -4,16 +4,32 @@ import java.util.List;
 import java.util.Map;
 
 public class Shop {
-    public static final Path path = Path.of("C:\\Projects\\JavaStudy\\jv-fruit-shop\\DB.csv");
+    private static DataBase db;
 
-    public static void displayActualData(List<Good> inputData) {
-        Map<String, Integer> data = getActualData(inputData);
-
-        data.forEach((key, value) -> System.out.println(key + "," + value));
+    public Shop(Path path) {
+        if (!setDbConnection(path)) {
+            System.out.println("The connection with database isn't set");
+        };
     }
 
-    public static Map<String, Integer> getActualData(List<Good> data) {
+    public Shop() {}
+
+    public boolean displayActualData() {
+        Map<String, Integer> data = getActualData();
+
+        data.forEach((key, value) -> System.out.println(key + "," + value));
+
+        return data.size() >= 0 ? true : false;
+    }
+
+    public Map<String, Integer> getActualData() {
         Map<String, Integer> result = new HashMap<>();
+
+        if (getDbConnection() == null) {
+            return result;
+        }
+
+        List<Good> data = db.getData();
 
         for (Good good: data) {
             String key = good.getFruit();
@@ -39,9 +55,15 @@ public class Shop {
         return result;
     }
 
-    public static void main(String[] args) {
-        DataBase db = new DataBase(path);
+    public boolean setDbConnection(Path path) {
+        if (path == null) {
+            path = Path.of("C:\\Projects\\JavaStudy\\jv-fruit-shop\\DB.csv");
+        }
 
-        displayActualData(db.getData());
+        return (db = new DataBase(path)) != null;
+    }
+
+    public DataBase getDbConnection() {
+        return this.db;
     }
 }

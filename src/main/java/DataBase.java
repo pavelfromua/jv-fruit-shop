@@ -21,7 +21,7 @@ public class DataBase implements DbActions<Good> {
         if (Files.exists(path)) {
             try {
                 data = prepareData(Files.lines(path).collect(Collectors.toList()));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -29,31 +29,32 @@ public class DataBase implements DbActions<Good> {
         return data == null ? new ArrayList<>() : data;
     }
 
-    private List<Good> prepareData(List<String> data) {
+    private List<Good> prepareData(List<String> data) throws Exception {
         List<Good> table = new ArrayList<>();
 
-        for (int i = 1; i < data.size(); i++) {
-            String[] row = data.get(i).split(",");
+        try {
+            for (int i = 1; i < data.size(); i++) {
+                String[] row = data.get(i).split(",");
 
-            Type type = Enum.valueOf(Type.class, row[0].toUpperCase());
-            String fruit = row[1];
-            int quantity = Integer.parseInt(row[2]);
-            LocalDate date = LocalDate.parse(row[3], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                Type type = Enum.valueOf(Type.class, row[0].toUpperCase());
+                String fruit = row[1];
+                int quantity = Integer.parseInt(row[2]);
+                LocalDate date = LocalDate.parse(row[3], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            table.add(new Good(type, fruit, quantity, date));
+                table.add(new Good(type, fruit, quantity, date));
+            }
+        } catch (Exception e) {
+            //here we have problem
         }
 
         return table;
     }
 
-    public void displayInfo() {
+    public boolean displayInfo() {
         for (Good good: getData()) {
             System.out.println(good);
         }
-    }
 
-    @Override
-    public void saveData(List<Good> data) {
-        // method for future
+        return true;
     }
 }
