@@ -1,16 +1,24 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
 public class TestShop {
     public static Shop shop = new Shop();
-    public static Path rightData = Path.of("C:\\Projects\\JavaStudy\\jv-fruit-shop\\DB.csv");
-    public static Path wrongData = Path.of("C:\\Projects\\JavaStudy\\jv-fruit-shop\\DBw.csv");
+    public static Path rightData = Paths.get("DB.csv");
+    public static Path wrongData = Path.of("DBw.csv");
     public static final Good good = new Good(Type.S, "peach", 1000, LocalDate.now());
+
+    public TestShop() throws MalformedURLException {
+    }
 
     @Test
     public void isDbHasCorrectData() {
